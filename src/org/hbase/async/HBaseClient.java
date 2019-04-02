@@ -132,7 +132,10 @@ public class HBaseClient {
     pool = new ConnectionPoolConfigurationImpl("MyConnectionPool")
       .setPort(config.getInt("asynccassandra.port"))
       .setMaxConnsPerHost(1)
-      .setSeeds(config.getString("asynccassandra.seeds"));
+      .setSeeds(config.getString("asynccassandra.seeds"))
+      .setSocketTimeout(config.getInt("asynccassandra.socket_timeout"))   
+      .setMaxTimeoutWhenExhausted(config.getInt("asynccassandra.max_timeout"))   
+      .setConnectTimeout(config.getInt("asynccassandra.max_timeout"));   
     monitor = new CountingConnectionPoolMonitor();
     
     tsdb_table = config.getString("tsd.storage.hbase.data_table").getBytes();

@@ -319,6 +319,14 @@ public class Config {
     default_map.put("asynchbase.nsre.event_queue_size", "10000");
     
     /**
+     * Add configuration of timeout values to allow for the
+     * processing of huge data imports (e.g. initial migration data)
+     * without a socket timeout.
+     */
+    default_map.put("asynccassandra.socket_timeout", "10");   
+ 	default_map.put("asynccassandra.max_timeout", "10");  
+    
+    /**
      * How many different counters do we want to keep in memory for buffering.
      * Each entry requires storing the table name, row key, family name and
      * column qualifier, plus 4 small objects.
